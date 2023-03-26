@@ -1,0 +1,905 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "WillGaurd",
+  "sourceName": "contracts/WillGaurd.sol",
+  "address": "0x56787904086EC3311FeEefd02B9D15E28212CE78",
+  "abi": [
+    {
+      "type": "constructor",
+      "name": "",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "error",
+      "name": "InvalidLegacy",
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "type": "error",
+      "name": "NoLegacyRegistered",
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "type": "error",
+      "name": "NonTransferrableToken",
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "type": "event",
+      "name": "AddLegacy",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "type": "address",
+          "name": "testator",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "token",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "beneficiary",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "amount",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "nftId",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Approval",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "approved",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "ApprovalForAll",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "operator",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "bool",
+          "name": "approved",
+          "indexed": false,
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Executed",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "type": "address",
+          "name": "testator",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "executionDay",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "LegacyTransferFailed",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "type": "address",
+          "name": "testator",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "beneficiary",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "token",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "amount",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "nftId",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "NewExecutionDay",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "type": "address",
+          "name": "testator",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "executionDay",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "previousOwner",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "newOwner",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "RemoveLegacy",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": true,
+          "internalType": "uint256"
+        },
+        {
+          "type": "address",
+          "name": "testator",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "token",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "beneficiary",
+          "indexed": false,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "amount",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": false,
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "nftId",
+          "indexed": false,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "event",
+      "name": "Transfer",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "from",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "indexed": true,
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "anonymous": false
+    },
+    {
+      "type": "function",
+      "name": "_tokenIdCounter",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": "_value",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "addLegacy",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "token",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "beneficiary",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "amount",
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "approve",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "to",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "balanceOf",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "checkIn",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "checkUpkeep",
+      "inputs": [
+        {
+          "type": "bytes",
+          "name": "",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": "upkeepNeeded",
+          "internalType": "bool"
+        },
+        {
+          "type": "bytes",
+          "name": "tempData",
+          "internalType": "bytes"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "executionDay",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "executionList",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address",
+          "name": "",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getApproved",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address",
+          "name": "",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getBeneficiaryLegacies",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "tuple[]",
+          "name": "",
+          "components": [
+            {
+              "type": "address",
+              "name": "testator",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "token",
+              "internalType": "address"
+            },
+            {
+              "type": "address",
+              "name": "beneficiary",
+              "internalType": "address"
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "internalType": "uint256"
+            },
+            {
+              "type": "uint256",
+              "name": "tokenId",
+              "internalType": "uint256"
+            }
+          ],
+          "internalType": "struct Legacy[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "isApprovedForAll",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "operator",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": "",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "legacies",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "legacyCount",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "testator",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "legacyNFTs",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address",
+          "name": "testator",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "token",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "beneficiary",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "amount",
+          "internalType": "uint256"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "name",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address",
+          "name": "",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "ownerOf",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address",
+          "name": "",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "performUpkeep",
+      "inputs": [
+        {
+          "type": "bytes",
+          "name": "",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "removeLegacy",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "position",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "renounceOwnership",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "safeTransferFrom",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "from",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "safeTransferFrom",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "from",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        },
+        {
+          "type": "bytes",
+          "name": "data",
+          "internalType": "bytes"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "setApprovalForAll",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "operator",
+          "internalType": "address"
+        },
+        {
+          "type": "bool",
+          "name": "approved",
+          "internalType": "bool"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "supportsInterface",
+      "inputs": [
+        {
+          "type": "bytes4",
+          "name": "interfaceId",
+          "internalType": "bytes4"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": "",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "symbol",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "tokenURI",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "transferFrom",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "from",
+          "internalType": "address"
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "internalType": "address"
+        },
+        {
+          "type": "uint256",
+          "name": "tokenId",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "newOwner",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "willsToExecuteInDay",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "day",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": "",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
