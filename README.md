@@ -18,10 +18,11 @@ WillGuard is a solution that addresses the challenges faced by users in managing
 
 # Deployed Smart contracts on Scroll Testnet
 
-WillGaurd smart contract - 0x56787904086EC3311FeEefd02B9D15E28212CE78 
+WillGaurd smart contract - 0x56787904086EC3311FeEefd02B9D15E28212CE78 </br>
 thirdweb link - https://thirdweb.com/scroll-alpha-testnet/0x56787904086EC3311FeEefd02B9D15E28212CE78
 
-Test token - 0xc427B1BBa2564312F6082b514AF62020acEf9CC8
+
+Test token - 0xc427B1BBa2564312F6082b514AF62020acEf9CC8 </br>
 thirdweb link - https://thirdweb.com/scroll-alpha-testnet/0xc427B1BBa2564312F6082b514AF62020acEf9CC8
 
 
